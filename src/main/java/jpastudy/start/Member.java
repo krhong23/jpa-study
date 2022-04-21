@@ -1,6 +1,8 @@
 package jpastudy.start;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "MEMBER")
@@ -15,7 +17,10 @@ public class Member {
 
     private String city;
     private String street;
-    private String zipcode;
+    private String zipCode;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,11 +54,19 @@ public class Member {
         this.street = street;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
